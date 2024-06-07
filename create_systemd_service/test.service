@@ -1,0 +1,12 @@
+[Unit]
+Description=Test Startup service
+After=network.target
+
+[Service]
+Type=simple
+User=ec2-user
+WorkingDirectory=/home/ec2-user
+ExecStart=/usr/bin/python3.7 /home/ec2-user/test_code.py
+
+[Install]
+WantedBy=multi-user.target

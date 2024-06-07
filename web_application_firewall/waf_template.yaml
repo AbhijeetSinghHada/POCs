@@ -1,0 +1,41 @@
+Resources:
+  WAFWebACL:
+    Type: AWS::WAFv2::WebACL
+    Properties:
+      CustomResponseBodies:
+        - ResponseBodyKey: "403"
+          ResponseBody:
+            Content: "<html><head><title>403 Forbidden</title></head><body><h1>403 Forbidden</h1><p>Access to this resource on the server is denied!</p></body></html>"
+            ContentType: "text/html"
+      DefaultAction:
+        Allow: {}
+      Description: "WAF Web ACL for the web application"
+      Name: "WAFWebACL"
+      Rules:
+        - Name: "RateBasedRule"
+          Priority: 1
+          Action:
+            Block: {}
+          Statement:
+            RateBasedStatement:
+              Limit: 20
+              AggregateKeyType: IP
+              ForwardedIPConfig:
+                HeaderName: "X-Forwarded-For"
+              ScopeDownStatement:
+                AndStatement:
+                  Statement:
+                    GeoMatchStatement:
+                      CountryCodes:
+                        - "IN"
+
+        - Name: "GeoMatchRule"
+          Priority: 2
+          Action:
+            Block: {}
+          Statement:
+            NotStatement:
+              Statement:
+                GeoMatchStatement:
+                  CountryCodes:
+                    - "IN"

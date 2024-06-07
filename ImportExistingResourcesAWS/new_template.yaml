@@ -1,0 +1,78 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Import test
+Resources:
+  TestImportTable:
+    Type: "AWS::DynamoDB::Table"
+    DeletionPolicy: Retain
+    Properties:
+      TableName: ahada-destination-db
+      AttributeDefinitions:
+        - AttributeName: NODE
+          AttributeType: S
+        - AttributeName: TYPE
+          AttributeType: S
+      KeySchema:
+        - AttributeName: NODE
+          KeyType: HASH
+        - AttributeName: TYPE
+          KeyType: RANGE
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+      SSESpecification:
+        SSEEnabled: true
+        KMSMasterKeyId: !Ref KMSKey
+
+  KMSKey:
+    Type: AWS::KMS::Key
+    Properties:
+      Description: Key for KMS encrypting
+      Enabled: true
+      EnableKeyRotation: true
+      KeyPolicy:
+        Version: "2012-10-17"
+        Id: wgc-unified-id-encryption-key
+        Statement:
+          - Sid: Allow root account full access to the key
+            Effect: Allow
+            Principal:
+              AWS:
+                - !Sub "arn:aws:sts::${AWS::AccountId}:assumed-role/AWSReservedSSO_Sandbox_ba7a0c88afd0c49a/Abhijeet.Hada@watchguard.com"
+            Action:
+              - "kms:Create*"
+              - "kms:Describe*"
+              - "kms:Enable*"
+              - "kms:List*"
+              - "kms:Put*"
+              - "kms:Update*"
+              - "kms:Revoke*"
+              - "kms:Disable*"
+              - "kms:Get*"
+              - "kms:Delete*"
+              - "kms:TagResource"
+              - "kms:UntagResource"
+              - "kms:ScheduleKeyDeletion"
+              - "kms:CancelKeyDeletion"
+              - "kms:Decrypt"
+              - "kms:GenerateDataKey"
+            Resource: "*"
+          - Sid: Allow AWSReservedSSO_UnifiedIdDev-DeveloperQA_*/AWSReservedSSO_RegionalReadOnly_*/AWSReservedSSO_GlobalReadOnly_*/AWSReservedSSO_UnifiedIdQa-DeveloperQA_*/ roles access to use the key
+            Effect: Allow
+            Principal:
+              AWS:
+                - "*"
+            Action:
+              - "kms:Encrypt"
+              - "kms:Decrypt"
+              - "kms:GenerateDataKey"
+            Resource: "*"
+
+Outputs:
+  TestImportTable:
+    Value: !Ref TestImportTable
+  TestImportTableArn:
+    Value: !GetAtt TestImportTable.Arn
+  KeyId:
+    Value: !Ref KMSKey
+  KeyArn:
+    Value: !GetAtt KMSKey.Arn

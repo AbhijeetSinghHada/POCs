@@ -1,0 +1,2 @@
+--extra-index-url https://artifactory.infra.int.daas-watchguard.com/artifactory/api/pypi/pypi/simple
+wg_python_utils==0.1.82

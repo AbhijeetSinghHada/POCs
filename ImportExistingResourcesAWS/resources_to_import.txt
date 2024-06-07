@@ -1,0 +1,1 @@
+[{"ResourceType":"AWS::DynamoDB::Table","LogicalResourceId":"TestImportTable","ResourceIdentifier":{"TableName":"ahada-destination-db"}}]

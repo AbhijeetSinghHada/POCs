@@ -1,0 +1,187 @@
+openapi: 3.0.1
+
+info:
+  title: "wgc-dark-web-proxy-svc (Regional)"
+  description: Dark Web Proxy Public API
+  version: 0.0.1
+
+paths:
+  /v1/health:
+    get:
+      tags:
+        - Health
+      description: Health check
+      summary: Health check
+      responses:
+        200:
+          description: Health Lambda Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/health"
+
+  /v1/breach/{breach}:
+    get:
+      tags:
+        - get breach info
+      description: Get Breach Info
+      summary: Get Breach Info
+      parameters:
+        - $ref: "#/components/parameters/breach"
+      responses:
+        200:
+          description: Breach Info Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/breachInfo"
+        400:
+          description: Breach Info Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorModel"
+              example:
+                success: false
+                status: "400"
+                errors:
+                  - message: "Invalid breach"
+                    code: "2000"
+                    component: "breach_info"
+        401:
+          description: Breach Info Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorModel"
+              example:
+                success: false
+                status: "401"
+                errors:
+                  - message: "Unauthorized"
+                    code: "2001"
+                    component: "breach_info"
+        500:
+          description: Breach Info Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorModel"
+              example:
+                success: false
+                status: "2010"
+                errors:
+                  - message: "Internal Server Error"
+                    code: "500"
+                    component: "breach_info"
+
+
+components:
+  parameters:
+    breach:
+      in: path
+      name: breach
+      required: true
+      schema:
+        type: string
+  schemas:
+    health:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "OK"
+    errorModel:
+      type: object
+      properties:
+        success:
+          type: boolean
+          default: false
+        status:
+          type: string
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+              code:
+                type: string
+              component:
+                type: string
+    breachInfo:
+      type: object
+      properties:
+        EmailAlias:
+          type: string
+          example: "test"
+        EmailDomain:
+          type: string
+          example: "example.com"
+        PasswordCount:
+          type: integer
+          example: 1242443
+        Passwords:
+          type: array
+          items:
+            type: string
+            example: "*****1"
+        Breaches:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: "breach test p2p"
+              title:
+                type: string
+                example: "breach test p2p"
+              description:
+                type: string
+                example: "The site breach test p2p has been reported to possibly have suffered a data exposure that could include emails and passwords. The possible exposure would have happened in April 2017 although it was reported in April 2017"
+              domain:
+                type: string
+                example: ""
+              breach_date:
+                type: string
+                example: ""
+              disclosure_date:
+                type: string
+                example: ""
+              added_date:
+                type: string
+                example: ""
+              modified_date:
+                type: string
+                example: ""
+              record_count:
+                type: integer
+                example: 1242443
+              logo_path:
+                type: string
+                example: ""
+              is_verified:
+                type: integer
+                example: 100
+              is_sensitive:
+                type: integer
+                example: 0
+              is_retired:
+                type: integer
+                example: 0
+              is_spam:
+                type: integer
+                example: 0
+              is_collection:
+                type: integer
+                example: 0
+              is_enabled:
+                type: integer
+                example: 0
+              data_classes:
+                type: array
+                items:
+                  type: string
+                example: ["city","country","credit_card","passport","telephone","state","domain","credit_card_10","email","password","address","name"]

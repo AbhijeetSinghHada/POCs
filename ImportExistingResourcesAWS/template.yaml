@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Import test
+Resources:
+  TestImportTable:
+    Type: "AWS::DynamoDB::Table"
+    DeletionPolicy: Retain
+    Properties:
+      TableName: ahada-destination-db
+      AttributeDefinitions:
+        - AttributeName: NODE
+          AttributeType: S
+        - AttributeName: TYPE
+          AttributeType: S
+      KeySchema:
+        - AttributeName: NODE
+          KeyType: HASH
+        - AttributeName: TYPE
+          KeyType: RANGE
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
