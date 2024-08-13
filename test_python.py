@@ -1,51 +1,69 @@
-
-def test_func(lst):
-
-    if lst and type(lst) is list:
-        print(lst)
-    else:
-        print("not list bro")
-
-def test_func2(lst):
-
-    if isinstance(lst, list):
-        print(lst, "Part 2")
-    else:
-        print("not list bro part 2")
-
-def test_return_params():
-    return "abhi", True
-
-def get_dict_mapping(data, resources, default_type=str):
-    temp_data = data
-    val = None
-    for resource in resources:
-        map_res = temp_data.get(resource, None)
-        if isinstance(map_res, dict):
-            temp_data = temp_data.get(resource)
-        else:
-            val = temp_data.get(resource)
-    else:
-        return val
-    return default_type()
-
-
-def test_error():
-    
-    try:
-        print("try")
-        raise Exception("Error")
-    except Exception as e:
-        print("exception")
-        raise e
-    finally:
-        print("finally")
-
-
-def main(event):
-    f"""event, {event}"""
-    pass
-
-
-if __name__=="__main__":
-    main("hello")
+abc = {
+    "resource": "/v1/password/{root}",
+    "path": "/dark-web-pwd-chker/v1/password/00299",
+    "httpMethod": "GET",
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Cache-Control": "no-cache",
+        "Host": "pwdcheck.dws.dev.cloud.watchguard.com",
+        "Postman-Token": "0fa27469-ac61-4b18-82f7-32e9ad1f817b",
+        "User-Agent": "PostmanRuntime/7.40.0",
+        "watchguard-api-key": "MO5YGdUQX6azEiEyomtIT5Pb5cmXqTat5vH5zd1v",
+        "X-Amzn-Trace-Id": "Root=1-66b073e5-5b273902134165ea6c8433f5",
+        "X-Forwarded-For": "182.74.58.202",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https",
+    },
+    "multiValueHeaders": {
+        "Accept": ["*/*"],
+        "Accept-Encoding": ["gzip, deflate, br"],
+        "Cache-Control": ["no-cache"],
+        "Host": ["pwdcheck.dws.dev.cloud.watchguard.com"],
+        "Postman-Token": ["0fa27469-ac61-4b18-82f7-32e9ad1f817b"],
+        "User-Agent": ["PostmanRuntime/7.40.0"],
+        "watchguard-api-key": ["MO5YGdUQX6azEiEyomtIT5Pb5cmXqTat5vH5zd1v"],
+        "X-Amzn-Trace-Id": ["Root=1-66b073e5-5b273902134165ea6c8433f5"],
+        "X-Forwarded-For": ["182.74.58.202"],
+        "X-Forwarded-Port": ["443"],
+        "X-Forwarded-Proto": ["https"],
+    },
+    "queryStringParameters": None,
+    "multiValueQueryStringParameters": None,
+    "pathParameters": {"root": "00299"},
+    "stageVariables": {"wgEndpoint": "publicapi", "scope": "api-access"},
+    "requestContext": {
+        "resourceId": "bquh6r",
+        "authorizer": {"principalId": None, "integrationLatency": 177, "message": None},
+        "resourcePath": "/v1/password/{root}",
+        "httpMethod": "GET",
+        "extendedRequestId": "cBcL1GTRvHcEZcA=",
+        "requestTime": "05/Aug/2024:06:40:37 +0000",
+        "path": "/dark-web-pwd-chker/v1/password/00299",
+        "accountId": "211125429872",
+        "protocol": "HTTP/1.1",
+        "stage": "dev",
+        "domainPrefix": "pwdcheck",
+        "requestTimeEpoch": 1722840037041,
+        "requestId": "352928fd-6b91-4b72-b6cd-f55dc9917d55",
+        "identity": {
+            "cognitoIdentityPoolId": None,
+            "accountId": None,
+            "cognitoIdentityId": None,
+            "caller": None,
+            "sourceIp": "182.74.58.202",
+            "principalOrgId": None,
+            "accessKey": None,
+            "cognitoAuthenticationType": None,
+            "cognitoAuthenticationProvider": None,
+            "userArn": None,
+            "userAgent": "PostmanRuntime/7.40.0",
+            "user": None,
+        },
+        "domainName": "pwdcheck.dws.dev.cloud.watchguard.com",
+        "deploymentId": "5em9jv",
+        "apiId": "xtfxesonlb",
+    },
+    "body": None,
+    "isBase64Encoded": False,
+}

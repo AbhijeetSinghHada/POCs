@@ -1,1 +1,26 @@
-{"version": "1.0", "tx_id": "111111", "record_count": "12345", "message_count": "2", "message_number": "1", "account": "ACC-1234", "type": "domain", "value": "watchguard.com", "breach_info": {"description": "Brief description", "name": "Breach name", "data": ["Dates of birth", "Names", "Phone numbers", "Physical addresses", "Email addresses", "Passwords"], "logo_url": "https://darkwebscan-images.s3-us-west-1.amazonaws.com/mgm.png", "emails": [{"email": "abc@xyz.com", "passwords": ["foo", "bar"]}, {"email": "pqr@xyz.com", "passwords": ["foo", "bar"]}]}, "MessageAttributes": {"Region": {"Type": "String", "Value": "\"us-west-2 or eu-central-1 or ap-northeast-1\""}}}
+ahada-wgc-pwd-chker-data
+	
+CREATE_COMPLETE
+	
+2024-08-07 16:30:02 UTC+0530
+	
+Scheduled ECS task
+	
+ahada-wgc-pwd-chker-data-EFS
+	
+CREATE_COMPLETE
+	
+2024-08-07 16:28:31 UTC+0530
+	
+EFS File System and Security Groups for inbound and outbound rules
+	
+ahada-wgc-pwd-chker-data-IAM
+	
+CREATE_COMPLETE
+	
+2024-08-07 16:27:30 UTC+0530
+	
+IAM roles for the scheduled ECS task
+	
+ahada-wgc-dark-web-pwd-chker-DDB
+	
